@@ -1,45 +1,59 @@
-# TMD: FullStack Intern Assignment
+# Authentication System
 
 ## Overview
 
-This assignment involves setting up a simple username/password authentication system using Redux for state management and Next.js for the front-end and back-end. You will create API endpoints with bearer token authentication and implement a custom `useAuthSession` hook to manage the user's session on the client side.
+This project implements a simple username/password authentication system using Redux for state management and Next.js for both front-end and back-end. It includes API endpoints with bearer token authentication and a custom useAuthSession hook to manage user sessions on the client side.
 
-## Your Tasks
+## Features
 
-1. **Implement the `useAuthSession` Hook**:
+1. User Authentication: Secure login with username and password.
+2. Bearer Token Authentication: API requests secured with bearer tokens.
+3. State Management: Redux for managing authentication state.
+4. Custom Hook: useAuthSession hook to manage user sessions.
+5. UI Feedback: Toast notifications for errors and successful logins.
+6. Responsive UI: Plain CSS for styling.
 
-   - In `hooks/useAuthSession.ts`, create a custom hook that manages the user's authentication session.
-   - The hook should handle checking if a user is authenticated and fetching user data.
+## Setup and Installation
 
-2. **Create and Complete the API Endpoints**:
+1. Clone the Repository
 
-   - create the required apis
+2. Install Dependencies
 
-3. **Bearer Token Authentication**:
-   - Implement bearer token authentication in your API endpoints.
-   - Ensure that API requests are secured and only accessible to authenticated users.
-
-## Example Usage of useAuthSession Hook
-
-```bash
-const { user } = useAuthSession();
-
-if (user) {
-  console.log('User:', user.username);
-}
+```
+npm install
 ```
 
-## Estimated Time
+3. Create a .env File
 
-Please spend no more than 3-4 hours on this assignment and submit whatever you can complete within that time frame.
+In the root directory, create a .env file with the following content:
 
-## Bonus Tasks
+```
+JWT_SECRET=your_secret_key
+```
 
-1. Add validation checks for the login form.
-2. Show toast notifications for errors and successful login.
+Replace your_secret_key with a secure secret key.
 
-## Submission
+4. Run the Development Server
 
-1. Ensure all your changes are committed.
-2. Push your changes to a new repository on your personal GitHub account with public access.
-3. Provide a link to your repository, along with your email and phone number, in the provided Google Form. Do not create pull requests in the shared repository.
+```
+npm run dev
+```
+
+5. Navigate to the Application:
+
+Open your browser and go to http://localhost:3000.
+
+## How to Use
+
+1. **Login:**
+
+- Enter user as the username.
+- Enter password as the password.
+- Click the Login button.
+- You should see a success message and the welcome message with the username.
+
+2. **Invalid Login:**
+
+- Enter incorrect credentials.
+- Click the Login button.
+- You should see an error message indicating invalid credentials.

@@ -1,13 +1,33 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser, clearAuth } from "@/redux/auth/auth.slice";
-import { RootState } from "@/redux/store";
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../redux';
+import { useEffect } from 'react';
+import { setUser, logout } from '../redux/auth/authSlice';
+import axios from 'axios';
 
 const useAuthSession = () => {
-  const dispatch = useDispatch();
+  const token = useSelector((state: RootState) => state.auth.token);
   const user = useSelector((state: RootState) => state.auth.user);
-  //  implement the logic here to check user session
-  return user;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (token) {
+        try {
+          const response = await axios.get('/api/user', {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          dispatch(setUser(response.data));
+        } catch (error) {
+          console.error(error);
+          dispatch(logout());
+        }
+      }
+    };
+
+    fetchUser();
+  }, [token, dispatch]);
+
+  return { user };
 };
 
 export default useAuthSession;
